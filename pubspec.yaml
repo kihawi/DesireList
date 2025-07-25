@@ -1,0 +1,76 @@
+name: flutter_projects
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.9
+  image_picker: ^0.8.7+4
+  
+  dotted_border: ^3.1.0
+  intl: ^0.20.2
+  auto_route: ^10.1.0+1
+
+  cupertino_icons: ^1.0.8
+  hive_ce: ^2.8.0
+  hive_ce_flutter: ^2.1.0
+  dot_navigation_bar: ^1.0.2
+  google_nav_bar: ^5.0.7
+  flutter_bloc: ^9.1.1
+  shared_preferences: ^2.5.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  hive_ce_generator: ^1.9.2
+  build_runner: ^2.5.4
+  auto_route_generator: 10.2.3
+
+
+flutter:
+
+  uses-material-design: true
+  
+  assets:
+    - assets/icons/title.svg
+    - assets/icons/notification-status.svg
+    - assets/icons/tag.svg
+    - assets/icons/edit.svg
+    - assets/icons/Delete Icon.svg
+
+  # Добавление кастомных шрифтов
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: assets/fonts/Rubik-VariableFont_wght.ttf
+        - asset: assets/fonts/Rubik-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/Rubik-Bold.ttf
+        - asset: assets/fonts/Rubik-ExtraBoldItalic.ttf
+        - asset: assets/fonts/Rubik-ExtraBold.ttf  
+        - asset: assets/fonts/Rubik-Regular.ttf
+        - asset: assets/fonts/Rubik-SemiBold.ttf  
+        - asset: assets/fonts/Rubik-Medium.ttf  
+        - asset: assets/fonts/Rubik-Light.ttf
+        - asset: assets/fonts/Rubik-BoldItalic.ttf
+        - asset: assets/fonts/Rubik-MediumItalic.ttf
