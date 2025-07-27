@@ -1,16 +1,13 @@
 part of 'theme.dart';
-// $light-cyan: #e0fbfcff;
-// $light-blue: #c2dfe3ff;
-// $fairy-tale: #ffc6d9ff;
-// $ultra-violet: #484d6dff;
-// $gunmetal: #253237ff;
 
 abstract class AppColors {
-  static const lightCyanBlue = Color.fromARGB(255, 224, 251, 252);
-  static const lightBlue = Color.fromARGB(255, 230, 136, 136);
-  static const fairyTale = Color.fromARGB(255, 183, 156, 237);
-  static const ultraViolet = Color.fromARGB(255, 72, 77, 109);
-  static const gunmetal = Color.fromARGB(255, 37, 50, 55);
-  static const black = Color.fromARGB(255, 0, 0, 0);
-  static const white = Color.fromARGB(255, 255, 255, 255);
+  static const Color darkGray = Color(0xFF2F2F2F); // тёмно-серый (почти чёрный)
+  static const Color lime = Color(0xFFE2F4A6); // светло-салатовый / лаймовый
+  static const Color pink = Color(0xFFEEA0FF); // сиренево-розовый
+  static const Color blue = Color(0xFF5A4EFF); // ярко-синий / фиолетово-синий
+  static const Color lightGray = Color(0xFFF5F5F5);
+  static const Color white = Colors.white;
+  static const Color black = Colors.black;
+
+  // светло-серый (почти белый)
 }

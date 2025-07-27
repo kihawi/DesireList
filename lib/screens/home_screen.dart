@@ -29,16 +29,15 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverAppBar(
               //backgroundColor: Colors.white,
               centerTitle: false,
-              //expandedHeight: 200,
+
               floating: true, // чтобы появлялся при скролле вверх
-              // snap: true,
+              snap: true,
               title: Text(
                 'Мои хотелки',
                 style: TextStyle(
                   fontSize: 32,
                   fontFamily: 'Rubik',
                   fontWeight: FontWeight.w700,
-                  color: Colors.black,
                 ),
               ),
               actions: [

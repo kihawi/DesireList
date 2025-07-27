@@ -49,46 +49,29 @@ class _MainScreenState extends State<MainScreen> {
 
   Padding _buildBottomAppbar(TabsRouter tabsRouter) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
+      padding: EdgeInsetsGeometry.directional(end: 55, start: 55),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(36),
+          borderRadius: BorderRadius.circular(100),
           color: Theme.of(context).bottomAppBarTheme.color,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.8), // цвет тени
-              offset: const Offset(0, 4), // смещение (x, y)
-              blurRadius: 10, // размытие
-              spreadRadius: 0, // радиус распространения
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+          children: [
+            IconButton(
+              icon: Icon(Icons.home_filled),
+              onPressed: () => tabsRouter.setActiveIndex(0),
+            ),
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () => tabsRouter.setActiveIndex(1),
+            ),
+            IconButton(
+              icon: Icon(Icons.query_stats),
+              onPressed: () => tabsRouter.setActiveIndex(2),
             ),
           ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-          child: GNav(
-            activeColor: Theme.of(context).colorScheme.primary,
-
-            tabBackgroundColor: const Color.fromARGB(50, 255, 255, 255),
-
-            //backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-            curve: Curves.slowMiddle,
-            gap: 8,
-
-            iconSize: 24,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            duration: const Duration(milliseconds: 300),
-
-            color: const Color.fromARGB(255, 255, 255, 255),
-            tabs: const [
-              GButton(icon: CupertinoIcons.home, text: 'Home'),
-              GButton(icon: CupertinoIcons.heart, text: 'Likes'),
-              GButton(icon: CupertinoIcons.search, text: 'Search'),
-            ],
-            selectedIndex: tabsRouter.activeIndex,
-            onTabChange: (index) {
-              tabsRouter.setActiveIndex(index);
-            },
-          ),
         ),
       ),
     );

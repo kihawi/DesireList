@@ -4,19 +4,20 @@ ThemeData get darkTheme {
   return ThemeData(
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
-      primary: const Color.fromARGB(255, 0, 0, 0),
-      onPrimary: AppColors.gunmetal,
-      secondary: AppColors.ultraViolet,
-      onSecondary: AppColors.white,
-      error: AppColors.fairyTale,
+      primary: AppColors.pink,
+      onPrimary: AppColors.lightGray,
+      secondary: AppColors.darkGray,
+      onSecondary: AppColors.lightGray,
+      error: AppColors.blue,
 
-      onError: AppColors.fairyTale,
+      onError: AppColors.blue,
 
-      surface: AppColors.ultraViolet,
-      onSurface: AppColors.white,
+      surface: Color(0xFF292929),
+      onSurface: AppColors.lime,
     ),
-    scaffoldBackgroundColor: AppColors.gunmetal,
+    scaffoldBackgroundColor: Color(0xFF121212),
     bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
+
     useMaterial3: true,
   );
 }
