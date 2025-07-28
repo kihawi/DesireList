@@ -18,7 +18,7 @@ class AddDesireScreen extends StatefulWidget {
 
 class _AddDesireScreenState extends State<AddDesireScreen> {
   bool _titleIsEmty = false;
-  File? selectedPhoto;
+  String? selectedPhoto;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   List<String> selectedCategories = [];
@@ -221,7 +221,7 @@ class _AddDesireScreenState extends State<AddDesireScreen> {
         description: descriptionController.text,
         status: 'idea',
         category: selectedCategories.isEmpty ? ['Общее'] : selectedCategories,
-        imageUrl: selectedPhoto?.path,
+        imageUrl: selectedPhoto,
       ),
     );
     _clearForm();

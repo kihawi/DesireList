@@ -5,7 +5,7 @@ ThemeData get lightTheme {
     // useMaterial3: true,
     // primaryColor: AppColors.fairyTale,
     colorScheme: ColorScheme(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       primary: AppColors.pink,
       onPrimary: AppColors.lightGray,
       secondary: AppColors.lightGray,

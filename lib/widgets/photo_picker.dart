@@ -1,10 +1,11 @@
 import 'dart:io';
-
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PhotoPicker extends StatefulWidget {
-  final void Function(File?) onPhotoSelected;
+  final void Function(String?) onPhotoSelected;
 
   const PhotoPicker({super.key, required this.onPhotoSelected});
 
@@ -32,7 +33,8 @@ class _PhotoPickerState extends State<PhotoPicker> {
       setState(() {
         _imageFile = File(pickedFile.path);
       });
-      widget.onPhotoSelected(_imageFile);
+      final savedPath = await saveImagePermanently(File(pickedFile.path));
+      widget.onPhotoSelected(savedPath);
     }
     try {
       // код, который может вызвать ошибку
@@ -41,6 +43,14 @@ class _PhotoPickerState extends State<PhotoPicker> {
     } finally {
       _isPicking = false;
     }
+  }
+
+  Future<String> saveImagePermanently(File imageFile) async {
+    final appDir = await getApplicationDocumentsDirectory();
+    final fileName =
+        '${DateTime.now().millisecondsSinceEpoch}_${basename(imageFile.path)}';
+    final savedImage = await imageFile.copy('${appDir.path}/$fileName');
+    return savedImage.path; // возвращаем полный путь сохранённого файла
   }
 
   @override

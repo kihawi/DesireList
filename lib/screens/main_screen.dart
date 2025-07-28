@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/router/router.gr.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {
@@ -33,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: const [HomeRoute(), AddDesireRoute(), StatsRoute()],
+      routes: const [HomeRoute(), StatsRoute()],
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
 
@@ -55,23 +53,37 @@ class _MainScreenState extends State<MainScreen> {
           borderRadius: BorderRadius.circular(100),
           color: Theme.of(context).bottomAppBarTheme.color,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 10,
+            bottom: 10,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-          children: [
-            IconButton(
-              icon: Icon(Icons.home_filled),
-              onPressed: () => tabsRouter.setActiveIndex(0),
-            ),
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () => tabsRouter.setActiveIndex(1),
-            ),
-            IconButton(
-              icon: Icon(Icons.query_stats),
-              onPressed: () => tabsRouter.setActiveIndex(2),
-            ),
-          ],
+            children: [
+              IconButton(
+                iconSize: 30,
+                highlightColor: Theme.of(context).primaryColor,
+                icon: Icon(Icons.home_filled, color: Colors.white),
+                onPressed: () => tabsRouter.setActiveIndex(0),
+              ),
+              IconButton(
+                iconSize: 30,
+                highlightColor: Theme.of(context).primaryColor,
+                icon: Icon(Icons.add, color: Colors.white),
+                onPressed: () => context.pushRoute(AddDesireRoute()),
+              ),
+              IconButton(
+                iconSize: 30,
+                highlightColor: Theme.of(context).primaryColor,
+                icon: Icon(Icons.query_stats, color: Colors.white),
+                onPressed: () => tabsRouter.setActiveIndex(2),
+              ),
+            ],
+          ),
         ),
       ),
     );
