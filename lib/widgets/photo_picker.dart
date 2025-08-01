@@ -50,7 +50,9 @@ class _PhotoPickerState extends State<PhotoPicker> {
     final fileName =
         '${DateTime.now().millisecondsSinceEpoch}_${basename(imageFile.path)}';
     final savedImage = await imageFile.copy('${appDir.path}/$fileName');
-    return savedImage.path; // возвращаем полный путь сохранённого файла
+    return basename(
+      savedImage.path,
+    ); // возвращаем полный путь сохранённого файла
   }
 
   @override
