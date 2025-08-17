@@ -22,8 +22,8 @@ class DesireAdapter extends TypeAdapter<Desire> {
       description: fields[2] as String,
       status: fields[3] == null ? 'идея' : fields[3] as String,
       category: fields[4] == null
-          ? const ['Общее']
-          : (fields[4] as List).cast<dynamic>(),
+          ? const <String>['Общее']
+          : (fields[4] as List).cast<String>(),
       imageUrl: fields[5] as String?,
       createdAt: fields[6] as DateTime?,
     );

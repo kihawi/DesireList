@@ -16,60 +16,95 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    context.read<DesireBloc>().add(LoadDesireList());
+    context.read<DesireBloc>().add(LoadDesireListEvent());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (context, bool innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              //backgroundColor: Colors.white,
-              centerTitle: false,
+      body: BlocBuilder<DesireBloc, DesireState>(
+        builder: (context, state) {
+          if (state is DesireListLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-              floating: true, // чтобы появлялся при скролле вверх
-              snap: true,
-              title: Text(
-                'Мои хотелки',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontFamily: 'Rubik',
-                  fontWeight: FontWeight.w700,
+          if (state is DesireListLoadedState) {
+            final list = state.desireList;
+
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  //expandedHeight: 120,
+                  // flexibleSpace: FlexibleSpaceBar(
+                  //   background: Column(
+                  //     mainAxisAlignment: MainAxisAlignment.end,
+                  //     children: [
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //         children: [
+                  //           Container(width: 50, height: 50, color: Colors.red),
+                  //           Container(
+                  //             width: 50,
+                  //             height: 50,
+                  //             color: Colors.green,
+                  //           ),
+                  //           Container(
+                  //             width: 50,
+                  //             height: 50,
+                  //             color: Colors.blue,
+                  //           ),
+                  //         ],
+                  //       ),
+                  //       SizedBox(height: 10),
+                  //     ],
+                  //   ),
+                  // ),
+                  centerTitle: false,
+                  floating: true,
+                  snap: true,
+                  title: const Text(
+                    'Мои хотелки',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  actions: [
+                    IconButton(
+                      iconSize: 32,
+                      onPressed: () {
+                        context.read<ThemeBloc>().add(ChangeTheme());
+                      },
+                      icon: const Icon(Icons.dark_mode_outlined),
+                    ),
+                  ],
                 ),
-              ),
-              actions: [
-                IconButton(
-                  iconSize: 32,
-                  onPressed: () {
-                    context.read<ThemeBloc>().add(ChangeTheme());
-                  },
-                  icon: const Icon(Icons.dark_mode_outlined),
-                ),
+
+                if (list.isEmpty)
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Center(
+                      child: Text(
+                        'Список пуст',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ),
+                  )
+                else
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) => CardOfDesire(desire: list[index]),
+                      childCount: list.length,
+                    ),
+                  ),
               ],
-            ),
-          ];
-        },
-        body: BlocBuilder<DesireBloc, DesireState>(
-          builder: (context, state) {
-            if (state is DesireListLoaded) {
-              return Center(
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: state.desireList.length,
-                  itemBuilder: (context, index) {
-                    return CardOfDesire(desire: state.desireList[index]);
-                  },
-                ),
-              );
-            }
-            if (state is DesireListLoading) {}
+            );
+          }
 
-            return Center(child: const CircularProgressIndicator());
-          },
-        ),
+          return const SizedBox();
+        },
       ),
     );
   }

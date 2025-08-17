@@ -39,7 +39,10 @@ class _MainScreenState extends State<MainScreen> {
           extendBody: true,
           resizeToAvoidBottomInset: false, //чтобы клава не поднимала ап бар
           body: child,
-          bottomNavigationBar: SafeArea(child: _buildBottomAppbar(tabsRouter)),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: SafeArea(child: _buildBottomAppbar(tabsRouter)),
+          ),
         );
       },
     );
@@ -47,6 +50,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Padding _buildBottomAppbar(TabsRouter tabsRouter) {
     return Padding(
+      key: navBarKey,
       padding: EdgeInsetsGeometry.directional(end: 55, start: 55),
       child: Container(
         decoration: BoxDecoration(

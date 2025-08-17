@@ -28,18 +28,14 @@ class _AddDesireScreenState extends State<AddDesireScreen> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Container(
-          //color: const Color.fromARGB(255, 255, 76, 76),
-          alignment: Alignment.bottomLeft,
-          child: const Text(
-            'Добавить хотелку',
-            style: TextStyle(
-              fontSize: 30,
-              fontFamily: 'Rubik',
-              fontWeight: FontWeight.w700,
-              color: Colors.black,
-            ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          'Добавить хотелку',
+          style: TextStyle(
+            fontSize: 18,
+            fontFamily: 'Rubik',
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),
@@ -188,7 +184,6 @@ class _AddDesireScreenState extends State<AddDesireScreen> {
                 ),
                 onPressed: () {
                   _saveDesire();
-                  context.read<DesireBloc>().add(LoadDesireList());
                 },
                 child: Text(
                   'Сохранить',
@@ -215,16 +210,19 @@ class _AddDesireScreenState extends State<AddDesireScreen> {
       return;
     }
 
-    DesireRepository().addDesire(
-      Desire(
-        title: titleController.text,
-        description: descriptionController.text,
-        status: 'idea',
-        category: selectedCategories.isEmpty ? ['Общее'] : selectedCategories,
-        imageUrl: selectedPhoto,
-      ),
+    Desire newDesire = Desire(
+      title: titleController.text,
+      description: descriptionController.text,
+      status: 'idea',
+      category: selectedCategories.isEmpty ? ['Общее'] : selectedCategories,
+      imageUrl: selectedPhoto,
     );
-    _clearForm();
+
+    DesireRepository().addDesire(newDesire);
+    context.read<DesireBloc>().add(LoadDesireListEvent());
+
+    //_clearForm();
+    context.router.back();
   }
 
   @override

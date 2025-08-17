@@ -17,7 +17,7 @@ class Desire extends HiveObject {
   String status;
 
   @HiveField(4)
-  List category;
+  List<String> category;
 
   @HiveField(5)
   String? imageUrl;
@@ -30,10 +30,11 @@ class Desire extends HiveObject {
     required this.title,
     required this.description,
     this.status = 'идея',
-    this.category = const ['Общее'],
+    List<String>? category,
     this.imageUrl,
     DateTime? createdAt,
-  }) : createdAt = createdAt ?? DateTime.now();
+  }) : category = category ?? ['Общее'],
+       createdAt = createdAt ?? DateTime.now();
 
   Map<String, dynamic> toJson() => {
     'id': id,

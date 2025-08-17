@@ -7,9 +7,19 @@ part 'desire_state.dart';
 
 class DesireBloc extends Bloc<DesireEvent, DesireState> {
   DesireBloc() : super(DesireInitial()) {
-    on<LoadDesireList>((event, emit) async {
+    on<LoadDesireListEvent>((event, emit) async {
+      emit(DesireListLoadingState());
       final desireList = await DesireRepository().getAllDesires();
-      emit(DesireListLoaded(desireList: desireList));
+      emit(DesireListLoadedState(desireList: desireList));
+    });
+    on<AddDesireEvent>((event, emit) {
+      if (state is DesireListLoadedState) {
+        final currentList = List<Desire>.from(
+          (state as DesireListLoadedState).desireList,
+        );
+        currentList.add(event.desire);
+        emit(DesireListLoadedState(desireList: currentList));
+      }
     });
   }
 }

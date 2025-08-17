@@ -15,7 +15,9 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ThemeBloc()..add(SetInitialTheme())),
-        BlocProvider(create: (context) => DesireBloc()..add(LoadDesireList())),
+        BlocProvider(
+          create: (context) => DesireBloc()..add(LoadDesireListEvent()),
+        ),
       ],
       child: const DesireList(),
     ),
