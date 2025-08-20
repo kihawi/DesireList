@@ -42,3 +42,4 @@ jobs:
         with:
           name: ios-unsigned-ipa
           path: Runner.ipa
+          if-no-files-found: error
