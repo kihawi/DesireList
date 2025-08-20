@@ -12,14 +12,5 @@ class DesireBloc extends Bloc<DesireEvent, DesireState> {
       final desireList = await DesireRepository().getAllDesires();
       emit(DesireListLoadedState(desireList: desireList));
     });
-    on<AddDesireEvent>((event, emit) {
-      if (state is DesireListLoadedState) {
-        final currentList = List<Desire>.from(
-          (state as DesireListLoadedState).desireList,
-        );
-        currentList.add(event.desire);
-        emit(DesireListLoadedState(desireList: currentList));
-      }
-    });
   }
 }

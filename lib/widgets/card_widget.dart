@@ -103,7 +103,6 @@ class _CardOfDesireState extends State<CardOfDesire> {
       setState(() {
         _scale = 1.0; // Возвращаем масштаб после закрытия меню
       });
-      print(desire.category);
     });
   }
 

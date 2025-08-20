@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -233,13 +232,13 @@ class _AddDesireScreenState extends State<AddDesireScreen> {
     selectedCategories.clear();
   }
 
-  void _clearForm() {
-    setState(() {
-      titleController.clear();
-      descriptionController.clear();
-      selectedCategories.clear();
-      selectedPhoto = null;
-      _titleIsEmty = false;
-    });
-  }
+  // void _clearForm() {
+  //   setState(() {
+  //     titleController.clear();
+  //     descriptionController.clear();
+  //     selectedCategories.clear();
+  //     selectedPhoto = null;
+  //     _titleIsEmty = false;
+  //   });
+  // }
 }
