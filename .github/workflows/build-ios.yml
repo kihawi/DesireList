@@ -1,7 +1,7 @@
 name: Build iOS IPA (unsigned)
 
 on:
-  push: 
+  push:
 
 jobs:
   build-ios:
@@ -16,22 +16,29 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.32.5' 
+          flutter-version: '3.32.5'
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build iOS app (.app)
-        run: flutter build ios --release --no-codesign
+      - name: Select Xcode 16.2
+        run: sudo xcode-select -switch /Applications/Xcode_16.2.app/Contents/Developer
 
-      - name: Create unsigned IPA
-        run: |
-          mkdir -p Payload
-          cp -r build/ios/iphoneos/Runner.app Payload/
-          zip -r unsigned.ipa Payload
-          rm -rf Payload
+      - name: Print Xcode version
+        run: xcodebuild -version
+
+      - name: Download iOS Platform
+        run: xcodebuild -downloadPlatform iOS
+
+      - name: Build unsigned IPA
+        run: flutter build ipa --release --no-codesign
+
+      - name: List IPA files
+        run: ls -R build/ios/ipa || true
+
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-unsigned-ipa
-          path: unsigned.ipa
+          path: build/ios/ipa/Runner.ipa
+          if-no-files-found: error
